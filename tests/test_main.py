@@ -77,11 +77,8 @@ def test_delete_sheep():
     #Send a DELETE request
     response = client.delete("/sheep/1")
 
-    #Assert that server response code is 200(OK)
-    assert response.status_code == 200
+    #Assert that server response code is 204(NO_CONTENT)
+    assert response.status_code == 204
 
-    #Assert that response JSON is empty
-    assert response.json() == {}
-
-    #Assert that sheep is deleted from database
-    assert client.get("/sheep/1").json() == {}
+    #Assert that sheep is deleted from data
+    assert client.get("/sheep/1").status_code == 404
