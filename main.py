@@ -12,6 +12,11 @@ def read_sheep(id: int):
     return db.get_sheep(id)
 
 
+@app.get("/sheep", response_model=list[Sheep])
+def read_all_sheep():
+    return list(db.get_all_sheep().values())
+
+
 @app.post("/sheep/", response_model=Sheep, status_code=status.HTTP_201_CREATED)
 def add_sheep(sheep: Sheep):
     #Check if the sheep ID already exists to avoid duplicates
