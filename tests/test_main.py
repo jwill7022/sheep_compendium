@@ -82,3 +82,21 @@ def test_delete_sheep():
 
     #Assert that sheep is deleted from data
     assert client.get("/sheep/1").status_code == 404
+
+
+def test_read_all_sheep():
+
+    #Send a GET request for all sheep
+    response = client.get("/sheep")
+
+    #Assert that response code is 200(OK)
+    assert response.status_code == 200
+
+    data = response.json()
+    assert isinstance(data, list)
+    assert len(data) >= 6
+    sample_sheep = data[5]
+    assert "id" in sample_sheep
+    assert "name" in sample_sheep
+    assert "breed" in sample_sheep
+    assert "sex" in sample_sheep
