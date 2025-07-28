@@ -71,3 +71,17 @@ def test_update_sheep():
 
     #Assert that existing sheep's data was altered
     assert client.get("/sheep/1").json() == new_sheep
+
+
+def test_delete_sheep():
+    #Send a DELETE request
+    response = client.delete("/sheep/1")
+
+    #Assert that server response code is 200(OK)
+    assert response.status_code == 200
+
+    #Assert that response JSON is empty
+    assert response.json() == {}
+
+    #Assert that sheep is deleted from database
+    assert client.get("/sheep/1").json() == {}

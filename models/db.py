@@ -9,6 +9,24 @@ class FakeDB:
     def get_sheep(self, id: int) -> Sheep:
         return self.data.get(id)
 
+    def add_sheep(self, sheep: Sheep) -> Sheep:
+        # Check if the sheep ID already exists
+        if sheep.id in self.data:
+            raise ValueError(f"Sheep {sheep.id} already exists")
+        # Add the new sheep to the database
+        self.data[sheep.id] = sheep
+        return sheep
+
+    def update_sheep(self, sheep: Sheep) -> Sheep:
+
+        # Check if the sheep ID exists
+        if sheep.id not in self.data:
+            raise ValueError(f"Sheep {sheep.id} does not exist")
+
+        # Alter existing sheep using new data
+        self.data[sheep.id] = sheep
+        return sheep
+
 
 db = FakeDB()
 db.data = {
@@ -20,20 +38,3 @@ db.data = {
     6: Sheep(id=6, name="Esther", breed="Border Leicester", sex="ewe")
 }
 
-def add_sheep(self, sheep: Sheep) -> Sheep:
-    #Check if the sheep ID already exists
-    if sheep.id in self.data:
-        raise ValueError(f"Sheep {sheep.id} already exists")
-    #Add the new sheep to the database
-    self.data[sheep.id] = sheep
-    return sheep
-
-def update_sheep(self, sheep: Sheep) -> Sheep:
-
-    #Check if the sheep ID exists
-    if sheep.id not in self.data:
-        raise ValueError(f"Sheep {sheep.id} does not exist")
-
-    #Alter existing sheep using new data
-    self.data[sheep.id] = sheep
-    return sheep
