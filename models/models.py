@@ -1,3 +1,5 @@
+from typing import List
+
 from pydantic import BaseModel
 
 
@@ -6,3 +8,6 @@ class Sheep(BaseModel):
     name: str
     breed: str
     sex: str
+
+def get_all_sheep(sheep: List[Sheep]):
+    pass
