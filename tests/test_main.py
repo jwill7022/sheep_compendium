@@ -61,7 +61,7 @@ def test_update_sheep():
     }
 
     #Sending a PUT request for the altered sheep data
-    response = client.put("/sheep/", json=new_sheep)
+    response = client.put("/sheep/1", json=new_sheep)
 
     #Asserting that the response code given is 200(OK)
     assert response.status_code == 200

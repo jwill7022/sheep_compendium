@@ -18,3 +18,11 @@ def add_sheep(sheep: Sheep):
     # Add the new sheep to the database
     db.data[sheep.id] = sheep
     return sheep # Return the newly added sheep data
+
+@app.put("/sheep/{id}", response_model=Sheep, status_code=status.HTTP_200_OK)
+def update_sheep(sheep: Sheep):
+    if sheep.id not in db.data:
+        raise HTTPException(status_code=400, detail="Sheep with this ID doesn't exist")
+
+    db.data[sheep.id] = sheep
+    return sheep

@@ -1,0 +1,3 @@
+[submodule "sheep_compendium"]
+	path = sheep_compendium
+	url = https://github.com/jwill7022/sheep_compendium.git
